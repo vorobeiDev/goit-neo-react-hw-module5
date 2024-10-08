@@ -1,0 +1,13 @@
+.button {
+  margin: 10px auto 30px;
+  display: block;
+  background: transparent;
+  border: 2px solid orange;
+  padding: 16px 30px;
+  cursor: pointer;
+  transition: color .3s ease, background-color .3s ease;
+  &:hover {
+    background: orange;
+    color: white;
+  }
+}

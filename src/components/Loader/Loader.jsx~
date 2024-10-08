@@ -1,0 +1,9 @@
+import { Triangle } from 'react-loader-spinner';
+
+const Loader = () => {
+  return (
+    <Triangle color="orange" />
+  );
+};
+
+export default Loader;

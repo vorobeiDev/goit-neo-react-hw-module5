@@ -1,0 +1,12 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  max-width: 1600px;
+  margin: 0 auto;
+  gap: 15px;
+  padding: 30px 15px;
+  div {
+    height: 100%;
+  }
+
+}
