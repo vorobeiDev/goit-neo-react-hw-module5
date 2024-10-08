@@ -1,0 +1,17 @@
+.nav {
+  border-bottom: 1px solid orange;
+  padding: 16px 30px;
+  margin-bottom: 30px;
+  ul {
+    display: flex;
+    gap: 30px;
+  }
+}
+
+.link {
+  color: #2c2c2c;
+  text-decoration: none;
+  &:hover {
+    color: orange;
+  }
+}

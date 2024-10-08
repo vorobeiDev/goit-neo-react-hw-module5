@@ -7,6 +7,9 @@
 body {
   font-family: sans-serif;
   line-height: 1.5;
+  &.ReactModal__Body--open {
+    overflow: hidden;
+  }
 }
 
 h1,
@@ -31,3 +34,6 @@ img {
   max-width: 100%;
 }
 
+main {
+  max-width: 1440px;
+}

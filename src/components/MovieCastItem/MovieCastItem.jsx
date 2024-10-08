@@ -1,0 +1,17 @@
+import getImageFullPath from '../../utils/imagePath.js';
+
+import css from './MovieCastItem.module.css';
+
+const MovieCastItem = ({ actor }) => (
+  <div className={css.card}>
+    <img
+      className={css.poster}
+      src={getImageFullPath(actor.profile_path)}
+      alt={actor.name}
+    />
+    <p><strong>Actor Name:</strong> {actor.name}</p>
+    <p><strong>Character:</strong> {actor.character}</p>
+  </div>
+);
+
+export default MovieCastItem;

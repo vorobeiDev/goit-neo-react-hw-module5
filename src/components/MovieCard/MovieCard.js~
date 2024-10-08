@@ -1,0 +1,9 @@
+import getImageFullPath from '../../utils/imagePath.js';
+
+const MovieCard = ({ movie }) => (
+  <div>
+    <img src={getImageFullPath(movie.poster_path)} alt=""/>
+  </div>
+);
+
+export default MovieCard;

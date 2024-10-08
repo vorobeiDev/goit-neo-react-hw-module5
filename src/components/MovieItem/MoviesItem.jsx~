@@ -1,0 +1,9 @@
+const MoviesItem = () => {
+  return (
+    <div>
+      <h1>Movies Item</h1>
+    </div>
+  );
+};
+
+export default MoviesItem;

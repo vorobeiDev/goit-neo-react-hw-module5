@@ -1,0 +1,7 @@
+.cast {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  align-items: start;
+  gap: 20px 30px;
+  padding: 30px;
+}

@@ -1,0 +1,56 @@
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { useParams } from 'react-router-dom';
+import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
+import Loader from '../Loader/Loader.jsx';
+
+import MovieCastItem from '../MovieCastItem/MovieCastItem.jsx';
+
+import { getMovieCast } from '../../utils/api.js';
+
+import css from './MovieCast.module.css';
+
+const MovieCast = () => {
+  const { movieId } = useParams();
+  const [cast, setCast] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    const getCast = async () => {
+      try {
+        setIsLoading(true);
+        const response = await getMovieCast(movieId);
+        setCast(response);
+      } catch (error) {
+        setIsError(true);
+        toast.error(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    getCast();
+  }, [movieId]);
+
+  return (
+    <>
+      {isLoading && <Loader />}
+      {isError && <ErrorMessage />}
+      {cast.length > 0
+        ? (
+          <ul className={css.cast}>
+            {cast.map((actor) => (
+              <li key={actor.id}>
+                <MovieCastItem actor={actor} />
+              </li>
+            ))}
+          </ul>
+        )
+        : <p>No cast information</p>
+      }
+    </>
+  );
+};
+
+export default MovieCast;

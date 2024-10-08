@@ -1,0 +1,17 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 2px;
+}
+
+.poster {
+  display: block;
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-bottom: 6px;
+}

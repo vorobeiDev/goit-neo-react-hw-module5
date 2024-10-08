@@ -1,0 +1,9 @@
+.cast {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: start;
+  padding: 20px 0;
+  max-width: 768px;
+  margin: 0 auto;
+}

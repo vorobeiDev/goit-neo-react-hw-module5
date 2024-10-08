@@ -1,0 +1,66 @@
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
+
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage.jsx';
+import Loader from '../../components/Loader/Loader.jsx';
+import MoviesList from '../../components/MoviesList/MoviesList.jsx';
+
+import { searchMovies } from '../../utils/api.js';
+
+import css from './MoviesPage.module.css';
+
+const MoviesPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query');
+
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [wasSubmitted, setWasSubmitted] = useState(false);
+
+  const getMovies = async (query) => {
+
+    try {
+      setIsLoading(true);
+      const response = await searchMovies(query)
+      setMovies(response);
+    } catch (error) {
+      setIsError(true);
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!query) return;
+    setWasSubmitted(true);
+
+    getMovies(query);
+  }, [query]);
+
+  const searchHandler = async (event) => {
+    event.preventDefault();
+    const value = event.target.elements.search.value;
+    if (!value) return;
+    getMovies(value);
+    setSearchParams({ query: value });
+    setWasSubmitted(true);
+  };
+
+  return (
+    <div>
+      <form className={css.search} onSubmit={searchHandler}>
+        <input name="search" type="text" />
+        <button>Search</button>
+      </form>
+      {isLoading && <Loader />}
+      {isError && <ErrorMessage />}
+      {movies.length === 0 && wasSubmitted && !isLoading && !isError && <p>No movies found</p>}
+      {movies.length !== 0 && <MoviesList movies={movies} />}
+    </div>
+  );
+};
+
+export default MoviesPage;

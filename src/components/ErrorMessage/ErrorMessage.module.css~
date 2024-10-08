@@ -2,6 +2,6 @@
   text-align: center;
   border: 1px solid red;
   margin: 0 auto;
-  max-width: 440px;
+  max-width: 500px;
   padding: 30px;
 }
