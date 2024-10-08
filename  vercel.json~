@@ -1,6 +1,6 @@
 {
   "rewrites":  [
-    { "source": "/movies/(.*)", "destination": "/movies" },
+    {"source": "/movies/(.*)", "destination": "/movies"},
     {"source": "/(.*)", "destination": "/"}
   ]
 }
