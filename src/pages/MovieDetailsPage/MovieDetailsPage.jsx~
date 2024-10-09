@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
@@ -11,7 +11,9 @@ import { getMovieDetails } from '../../utils/api.js';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-  const navigation = useNavigate();
+  const location = useLocation();
+
+  const previousLocation = useRef(location.state || ROUTER.MOVIES);
 
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +40,7 @@ const MovieDetailsPage = () => {
     <>
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
-      <button onClick={navigation(-1)}>Go Back</button>
+      <Link to={previousLocation.current}>Go Back</Link>
       {movie && <MovieCard movie={movie} />}
       <h4>
         Additional information
